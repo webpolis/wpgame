@@ -10,23 +10,21 @@ var zlib = require('zlib');
 var server = http.createServer(
     function(req,ret){
         var params = url.parse(req.url, true);
-        var reqfile = __dirname + '/' + config.PATH_VIEWS + params.pathname;
+        var reqfile = __dirname + '/public/' + params.pathname;
         
         // custom url rules
         if(params.pathname.match(/^\/?require\.js$/gi)){
             reqfile = __dirname+'/../lib/requirejs/require.js';
-        }
-        if(params.pathname.match(/^\/?backbone\.js$/gi)){
+        }else if(params.pathname.match(/^\/?backbone\.js$/gi)){
             reqfile = __dirname+'/../lib/backbone/backbone-min.js';
-        }
-        if(params.pathname.match(/^\/?underscore\.js$/gi)){
+        }else if(params.pathname.match(/^\/?underscore\.js$/gi)){
             reqfile = __dirname+'/../lib/underscore/underscore-min.js';
-        }
-        if(params.pathname.match(/^\/?init\.js$/gi)){
+        }else if(params.pathname.match(/^\/?init\.js$/gi)){
             reqfile = __dirname+'/config/imports.js';
-        }
-        if(params.pathname.match(/^\/?client\.js$/gi)){
+        }else if(params.pathname.match(/^\/?client\.js$/gi)){
             reqfile = __dirname+'/client.js';
+        }else if(params.pathname.match(/^.*\.html?$/gi)){
+            reqfile = __dirname + '/'+config.PATH_VIEWS + params.pathname;
         }
         
         fs.readFile(reqfile,function(err,data){

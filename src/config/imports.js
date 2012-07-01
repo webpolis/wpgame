@@ -14,7 +14,7 @@ require.config({
         },
         backbone: {
             deps: ['underscore', 'nowjs'],
-            exports: 'backbone'
+            exports: 'Backbone'
         },
         client: {
             deps: ['nowjs', 'backbone']
