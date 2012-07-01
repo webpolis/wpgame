@@ -7,6 +7,9 @@ require.config({
         jquery: 'jquery-1.7.2.min'
     },
     shim: {
+        jquery: {
+            exports: '$'  
+        },
         nowjs: {
             exports: 'now'
         },
